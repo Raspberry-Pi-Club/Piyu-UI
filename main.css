@@ -46,3 +46,7 @@ footer{
 footer > span{
 	margin-left: 9px;
 }
+
+footer > .navigation{
+	  margin: 0px 10px 0px 25px;
+}

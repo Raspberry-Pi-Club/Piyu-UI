@@ -18,6 +18,7 @@
 		<span class="ap">AM</span>
 	</div>
 </header>
+<section id="mainActivityDisplay">
 <div class="headerDateTime">
 	<div class="leftD">
 		<span class="time">
@@ -33,16 +34,19 @@
 		<i class="mdi-file-cloud-queue"></i>
 	</div>
 </div>
+</section>
 </main>
 <footer>
-	<span><i class="mdi-action-perm-contact-cal"></i></span>
-	<span><i class="mdi-av-play-arrow"></i></span>
-	<span><i class="mdi-navigation-apps"></i></span>
-	<span><i class="mdi-action-group-work"></i></span>
-	<span><i class="mdi-action-settings"></i></span>
+	<span class="app" app="piyu.contacts"><i class="mdi-action-perm-contact-cal"></i></span>
+	<span class="app" app="piyu.music"><i class="mdi-av-play-arrow"></i></span>
+	<span class="app" app="core.allapps"><i class="mdi-navigation-apps"></i></span>
+	<span class="app" app="piyu.browser"><i class="mdi-action-group-work"></i></span>
+	<span class="app" app="core.settings"><i class="mdi-action-settings"></i></span>
 </footer>
     </body>
 </html>
 
 <script type="text/javascript" src="vendor/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="vendor/jquery-ui.min.js"></script>
 <script type="text/javascript" src="vendor/materialize/js/materialize.min.js"></script>
+<script type="text/javascript" src="main.js"></script>

@@ -1,0 +1,48 @@
+.right{
+	float: right;
+}
+
+header{
+	background: #69BE8B;
+	margin-bottom: 0 !important;
+}
+.leftD{
+    width: 240px;
+    color: #FFF;
+    background-color: #69B487;
+    float: left;
+    height: 100px;
+}
+.leftD > .time > .h  ,.leftD > .time > .m{
+	font-size: 50px;
+}
+.leftD > .time > .ap{
+	font-size: 25px;
+} 
+
+.leftD > .date{
+	padding-left: 10px; 
+}
+.rightD{
+	width: 120px;
+	height: 100px;
+	float: left;
+	padding-left: 41px;
+	background-color: #5B9E76;
+	padding-top: 10px;
+	color: #FFF;
+}
+.rightD > i{
+	font-size:50px;
+}
+footer{
+	position: fixed;
+	bottom: 0;
+	font-size: 50px;
+	width: 100%;
+	background: #CDCDCD;
+}
+
+footer > span{
+	margin-left: 9px;
+}

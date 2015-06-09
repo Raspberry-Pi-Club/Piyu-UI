@@ -1,14 +1,6 @@
 'use strict';
 
-var applications = '[{"name":"Browser","icon":"icons/default.png","action":"apps.browser"},
-{"name":"Contacts","icon":"icons/default.png","action":"apps.contacts"},
-{"name":"Music","icon":"icons/default.png","action":"apps.music"},
-{"name":"calendar","icon":"icons/default.png","action":"apps.calendar"},
-{"name":"Clock","icon":"icons/default.png","action":"apps.clock"},
-{"name":"Gallery","icon":"icons/default.png","action":"apps.gallery"},
-{"name":"Notes","icon":"icons/default.png","action":"apps.notes"},
-{"name":"Facebook","icon":"icons/default.png","action":"apps.facebook"}
-]';
+var applications = '[{"name":"Browser","icon":"icons/browser.png","action":"apps.browser"},{"name":"Contacts","icon":"icons/contacts.png","action":"apps.contacts"},{"name":"Music","icon":"icons/music.png","action":"apps.music"},{"name":"Calendar","icon":"icons/calendar.png","action":"apps.calendar"},{"name":"Clock","icon":"icons/clock.png","action":"apps.clock"},{"name":"Gallery","icon":"icons/gallery.png","action":"apps.gallery"},{"name":"Notes","icon":"icons/notes.png","action":"apps.notes"},{"name":"Facebook","icon":"icons/facebook.png","action":"apps.facebook"}]';
 
 var system = {
 	homeClose : function(){
@@ -25,6 +17,18 @@ var system = {
 	},
 	generateAppNavigation : function(){
 		return '<span class="navigation" loc="settings"><i class="mdi-hardware-keyboard-control"></i></span><span class="navigation" loc="home"><i class="mdi-action-home"></i></span><span class="navigation" loc="lock" id="lockHandler"><i class="mdi-action-lock-open" id="lockButton"></i></span><span class="navigation" loc="back"><i class="mdi-content-reply"></i></span>';
+	},
+	generateAllApps : function(){
+		var apps = JSON.parse(applications);
+		var data = '';
+		var app = {};
+		$(apps).each(function(i,app){
+				data += "<div class='application' action='"+ app.action +"' ><img src='"+ app.icon+"' /><span>" + app.name + "</div>";
+
+		});
+						
+	
+		return data;
 	},
 	body  	: function(data){
 		$('#mainActivityDisplay').html(data);
@@ -60,12 +64,23 @@ var apps = {
 		system.footer(system.generateAppNavigation());
 		system.homeShow();
 		console.log("Browser : Load done");
+	},
+	facebook : function(){
+		system.homeClose();
+		system.body("<h2>Facebook</h2><iframe src='http://mbasic.facebook.com' width='100%' height='100%'></iframe>");
+		system.footer(system.generateAppNavigation());
+		system.homeShow();
+		console.log("Facebook : Load done");
 	}
 };
 
 var core ={
 	allapps : function(){
-
+		system.homeClose();
+		system.body(system.generateAllApps());
+		system.footer(system.generateAppNavigation());
+		system.homeShow();
+		console.log("All Apps: Load done");
 	},
 	settings : function(){
 
@@ -86,6 +101,8 @@ $("body").on("click",".app",function(){
 	}else if(appName.substr(0,4)=='core'){
 		var name = appName.substr(5,appName.length);
 		console.log(name);
+		name = "core."+ name;
+		eval(name)();
 	}
 });
 
@@ -108,4 +125,10 @@ $("body").on("click",".navigation",function(){
 		$("#lockButton").removeClass('mdi-action-lock').addClass('mdi-action-lock-open');
 		$("#lockHandler").attr('loc','lock');
 	}
+});
+
+//All apps on click action
+$("body").on("click",".application",function(){
+	var name = $(this).attr('action');
+	eval(name)();
 });

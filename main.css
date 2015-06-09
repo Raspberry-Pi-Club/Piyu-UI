@@ -64,3 +64,24 @@ footer > .navigation{
   top: 21px;
   opacity: 0.5;
 }
+
+/* All apps Styles */
+
+.application{
+    width: 100px;
+
+    height: 100px;
+    display: inline-block;
+    margin: 10px 0px 0px 14px;
+}
+.application img{
+    width: 100px;
+
+    height: 100px;
+}
+.application span{
+    width: 100%;
+	
+    text-align: center;
+    display: block;
+}

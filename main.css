@@ -35,6 +35,32 @@ header{
 .rightD > i{
 	font-size:50px;
 }
+.mic{
+    position: absolute;
+
+    top: 174px;
+    left: 100px;
+    background-color: #EEE;
+    border: 5px solid #5B9E76;
+    border-radius: 73px;
+    width: 137px;
+    padding-left: 21px;
+    color: #1C84E8;
+}
+.console{
+	background: url('icons/console-bg.png');
+  width: 95%;
+  height: 150px;
+  border-radius: 6px;
+  position: relative;
+  top: 350px;
+  margin: 0 auto;
+}
+.console > p{
+	color: white;
+	position: absolute;
+	margin: 10px;
+}
 footer{
 	position: fixed;
 	bottom: 0;
@@ -85,3 +111,12 @@ footer > .navigation{
     text-align: center;
     display: block;
 }
+
+.settings-list   p{
+	font-size: 18px;
+}
+
+.settings-list   p > span{
+	font-size: 12px;
+}
+

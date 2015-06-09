@@ -83,7 +83,13 @@ var core ={
 		console.log("All Apps: Load done");
 	},
 	settings : function(){
+var data = '<ul class="collection settings-list"> <li class="collection-item avatar"> <i class="mdi-social-person circle pink"></i>    <p>Personal settings<br/>    <span>configure your personal settings here</span></p>       </li>  <li class="collection-item avatar">      <i class="mdi-device-access-time circle blue"></i>  <p>Time and date settings    <br/>   <span>modify your time and date</span>    </p>       </li>   <li class="collection-item avatar">    <i class="mdi-action-settings-display circle orange"></i>         <p>Display settings      <br/>      <span>edit your display</span>      </p>          </li>     <li class="collection-item avatar">      <i class="mdi-notification-sync circle purple"></i>      <p>Synchronization Settings      <br/>     <span>configure sync settings</span>      </p>          </li>    <li class="collection-item avatar">      <i class="mdi-av-play-arrow circle red"></i>      <p>Media settings      <br/>      <span>control your music system</span>      </p>      </li>    <li class="collection-item avatar">      <i class="mdi-action-assessment circle green"></i>   <p>About      <br/>      <span>information about piyu</span>      </p>        </li>  </ul>'
 
+      	system.homeClose();
+		system.body(data);
+		system.footer(system.generateAppNavigation());
+		system.homeShow();
+		console.log("Settings: Load done");
 	}
 };
 

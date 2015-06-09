@@ -1,7 +1,13 @@
 'use strict';
 
 var applications = '[{"name":"Browser","icon":"icons/default.png","action":"apps.browser"},
-{"name"}
+{"name":"Contacts","icon":"icons/default.png","action":"apps.contacts"},
+{"name":"Music","icon":"icons/default.png","action":"apps.music"},
+{"name":"calendar","icon":"icons/default.png","action":"apps.calendar"},
+{"name":"Clock","icon":"icons/default.png","action":"apps.clock"},
+{"name":"Gallery","icon":"icons/default.png","action":"apps.gallery"},
+{"name":"Notes","icon":"icons/default.png","action":"apps.notes"},
+{"name":"Facebook","icon":"icons/default.png","action":"apps.facebook"}
 ]';
 
 var system = {

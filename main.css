@@ -43,10 +43,24 @@ footer{
 	background: #CDCDCD;
 }
 
-footer > span{
+footer > .app-fix{
+	margin-left: 16px !important;
+}
+
+footer > .app{
 	margin-left: 9px;
 }
 
 footer > .navigation{
 	  margin: 0px 10px 0px 25px;
+}
+
+/*Locker */
+.overlay{
+	width: 100%;
+  position: absolute;
+  height: 84%;
+  background-color: #000;
+  top: 21px;
+  opacity: 0.5;
 }

@@ -13,7 +13,7 @@ var system = {
 		return '<span class="app app-fix" app="piyu.contacts"><i class="mdi-action-perm-contact-cal"></i></span><span class="app app-fix" app="piyu.music"><i class="mdi-av-play-arrow"></i></span><span class="app app-fix" app="core.allapps"><i class="mdi-navigation-apps"></i></span><span class="app app-fix" app="piyu.browser"><i class="mdi-action-group-work"></i></span><span class="app app-fix" app="core.settings"><i class="mdi-action-settings"></i></span>';
 	},
 	generateHomeMainDisplay : function(){
-		return '<div class="headerDateTime"><div class="leftD"><span class="time"><span class="h">10 : </span><span class="m">45</span><span class="ap">AM</span></span><span class="date">	TUE,&nbsp;MARCH 2019</span></div><div class="rightD"><i class="mdi-file-cloud-queue"></i></div></div>';
+		return '<div class="headerDateTime"><div class="leftD"><span class="time"><span class="h">10 : </span><span class="m">45</span><span class="ap">AM</span></span><span class="date">TUE,&nbsp;MARCH 2019</span></div><div class="rightD"><i class="mdi-file-cloud-queue"></i></div></div><div class="mic"><div><i class="mdi-av-mic large"></i></div></div><div class="console"><p></p></div>';
 	},
 	generateAppNavigation : function(){
 		return '<span class="navigation" loc="settings"><i class="mdi-hardware-keyboard-control"></i></span><span class="navigation" loc="home"><i class="mdi-action-home"></i></span><span class="navigation" loc="lock" id="lockHandler"><i class="mdi-action-lock-open" id="lockButton"></i></span><span class="navigation" loc="back"><i class="mdi-content-reply"></i></span>';
@@ -138,3 +138,20 @@ $("body").on("click",".application",function(){
 	var name = $(this).attr('action');
 	eval(name)();
 });
+
+
+setInterval(function(){
+$.ajax({
+method: "GET",
+url: "reader.php",
+data: "log"
+})
+.done(function( msg ) {
+	var data = JSON.parse(msg);
+	var out = '';
+	$(data).each(function(i,d){
+		out += d + '<br/>';
+	});
+	$('.console p').html(out);
+});
+},1000);

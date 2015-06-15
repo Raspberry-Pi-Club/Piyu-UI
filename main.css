@@ -13,6 +13,10 @@ header{
     float: left;
     height: 100px;
 }
+.leftD > .time{
+	  width: 240px;
+  		display: inline-block;
+}
 .leftD > .time > .h  ,.leftD > .time > .m{
 	font-size: 50px;
 }

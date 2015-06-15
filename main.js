@@ -1,4 +1,5 @@
 'use strict';
+var micState = false;
 
 var applications = '[{"name":"Browser","icon":"icons/browser.png","action":"apps.browser"},{"name":"Contacts","icon":"icons/contacts.png","action":"apps.contacts"},{"name":"Music","icon":"icons/music.png","action":"apps.music"},{"name":"Calendar","icon":"icons/calendar.png","action":"apps.calendar"},{"name":"Clock","icon":"icons/clock.png","action":"apps.clock"},{"name":"Gallery","icon":"icons/gallery.png","action":"apps.gallery"},{"name":"Notes","icon":"icons/notes.png","action":"apps.notes"},{"name":"Facebook","icon":"icons/facebook.png","action":"apps.facebook"}]';
 
@@ -148,10 +149,32 @@ data: "log"
 })
 .done(function( msg ) {
 	var data = JSON.parse(msg);
+	console.log(msg);
 	var out = '';
 	$(data).each(function(i,d){
-		out += d + '<br/>';
+		if(i!=0){
+			out += d + '<br/>';
+		}
+		
 	});
 	$('.console p').html(out);
 });
 },1000);
+
+
+//Mic Action
+$('.mic').click(function(){
+	if(micState == false){
+		micState = true;
+
+		$.ajax({
+		method: "GET",
+		url: "set.php",
+		data: {"listen" : 1
+			}
+		})
+		.done(function( msg ) {
+			$('.mic').addClass('micRec');
+		});	
+	}
+});

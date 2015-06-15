@@ -51,6 +51,9 @@ header{
     padding-left: 21px;
     color: #1C84E8;
 }
+.micRec{
+	border: 5px solid #CB1841 !important;
+}
 .console{
 	background: url('icons/console-bg.png');
   width: 95%;

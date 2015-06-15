@@ -13,10 +13,15 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 		$i = 0;
 		$get_i = sizeof($lineArray);
 		$out= array();
+		$max = 1;
+
 		while($i<5){
 			$i++;
 			$get_i--;
-			array_push($out,$lineArray[$get_i]);
+			if(isset($lineArray[$get_i])){
+				array_push($out,$lineArray[$get_i]);
+			}
+			
 		}
 			echo json_encode($out);
 		

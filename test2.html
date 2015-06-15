@@ -1,0 +1,39 @@
+<h1 id="test"></h1>
+<script type="text/javascript">
+var ignore_onend = false;
+  if (!('webkitSpeechRecognition' in window)) {
+  upgrade();
+} else {
+  //start_button.style.display = 'inline-block';
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  
+
+  recognition.start();
+
+
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+    //test.innerHTML = event.results;
+    if (typeof(event.results) == 'undefined') {
+      recognition.onend = null;
+      recognition.stop();
+      return;
+    }
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+        //console.log(final_transcript);
+ 
+        //test.innerHTML = final_transcript;
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+        console.log(interim_transcript);
+        test.innerHTML = interim_transcript;
+      }
+    }
+  };
+}
+</script>

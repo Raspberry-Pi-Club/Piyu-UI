@@ -127,3 +127,9 @@ footer > .navigation{
 	font-size: 12px;
 }
 
+/* Standard */
+iframe{
+  width: 100%;
+  height: 500px;
+  border:0;
+}

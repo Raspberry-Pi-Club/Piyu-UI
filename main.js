@@ -1,5 +1,5 @@
 'use strict';
-var micState = false;
+
 
 var applications = '[{"name":"Browser","icon":"icons/browser.png","action":"apps.browser"},{"name":"Contacts","icon":"icons/contacts.png","action":"apps.contacts"},{"name":"Music","icon":"icons/music.png","action":"apps.music"},{"name":"Calendar","icon":"icons/calendar.png","action":"apps.calendar"},{"name":"Clock","icon":"icons/clock.png","action":"apps.clock"},{"name":"Gallery","icon":"icons/gallery.png","action":"apps.gallery"},{"name":"Notes","icon":"icons/notes.png","action":"apps.notes"},{"name":"Facebook","icon":"icons/facebook.png","action":"apps.facebook"}]';
 
@@ -151,40 +151,108 @@ $("body").on("click",".application",function(){
 });
 
 
-setInterval(function(){
-$.ajax({
-method: "GET",
-url: "reader.php",
-data: "log"
-})
-.done(function( msg ) {
-	var data = JSON.parse(msg);
-	console.log(msg);
-	var out = '';
-	$(data).each(function(i,d){
-		if(i!=0){
-			out += d + '<br/>';
-		}
+// setInterval(function(){
+// $.ajax({
+// method: "GET",
+// url: "reader.php",
+// data: "log"
+// })
+// .done(function( msg ) {
+// 	var data = JSON.parse(msg);
+// 	console.log(msg);
+// 	var out = '';
+// 	$(data).each(function(i,d){
+// 		if(i!=0){
+// 			out += d + '<br/>';
+// 		}
 		
-	});
-	$('.console p').html(out);
-});
-},1000);
+// 	});
+// 	$('.console p').html(out);
+// });
+// },2000);
 
 
+var ignore_onend = false;
+var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+var interim_transcript;
+var final_transcript;
+
+$('.mic').prop('recording',false);
+var micState = false;
 //Mic Action
 $('.mic').click(function(){
 	if(micState == false){
 		micState = true;
+	
+		$('.mic').prop('recording',true);
+		$('.mic').addClass('micRec');
+  		$('#buzzer').get(0).play();
 
-		$.ajax({
-		method: "GET",
-		url: "set.php",
-		data: {"listen" : 1
-			}
-		})
-		.done(function( msg ) {
-			$('.mic').addClass('micRec');
-		});	
+  recognition.start();
+
+  recognition.onend =function(event){
+  	$('.mic').removeClass('micRec');
+  	$('.console  button').hide();
+  	$('#buzzeroff').get(0).play();
+  };
+
+  recognition.onresult = function(event) {
+  	$('.console  button').show();
+    interim_transcript = '';
+    final_transcript = '';
+    
+    if (typeof(event.results) == 'undefined') {
+      recognition.onend = null;
+      recognition.stop();
+      return;
+    }
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+        console.log(' FTS : '+final_transcript);
+        cDisplay.innerHTML = final_transcript;
+$.ajax({
+method: "GET",
+url: "commander.php",
+data: {
+	command: final_transcript
+}
+})
+.done(function( msg ) {
+	console.log(msg);
+});        
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+        console.log(interim_transcript);
+        cDisplay.innerHTML = interim_transcript;
+      }
+    }
+  };
+
 	}
+	else{
+		micState = false;
+		$('.mic').removeClass('micRec');
+		recognition.stop();
+	}
+});
+
+//button  click for recognition break
+
+$('.console  button').click(function(){
+	 recognition.stop();
+	 
+$.ajax({
+method: "GET",
+url: "commander.php",
+data: {
+	command: interim_transcript
+}
+})
+.done(function( msg ) {
+	console.log(msg);
+}); 
 });

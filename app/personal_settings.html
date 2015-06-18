@@ -38,42 +38,36 @@ h3{
   <img src="">
 </div>
 <div class="row">
-    <form class="col s12">
+    <form class="col s12" id="PSForm">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate">
+          <input id="first_name" type="text" class="validate" name="f_name">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
+          <input id="last_name" type="text" class="validate" name="l_name">
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input  id="D.O.B" type="text" class="validate">
-          <label for="D.O.B">D.O.B</label>
+          <input  id="D.O.B" type="date" class="validate" name="dob">
+          <label for="D.O.B" class="active">D.O.B</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input id="email" type="email" class="validate" name="email">
           <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
         </div>
       </div>
       
     </form>
   </div>
   <div class="but">
-  <a class="waves-effect waves-light btn-large">Edit</a>
+  <a class="waves-effect waves-light btn-large" id="editButton">Edit</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a class="waves-effect waves-light btn-large">Save</a>
+  <a class="waves-effect waves-light btn-large" id="saveButton">Save</a>
   </div>
   <div>
     </body>
@@ -82,4 +76,4 @@ h3{
 <script type="text/javascript" src="../vendor/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../vendor/jquery-ui.min.js"></script>
 <script type="text/javascript" src="../vendor/materialize/js/materialize.min.js"></script>
-<script type="text/javascript" src="../main.js"></script>
+<script type="text/javascript" src="scripts/personal_settings.js"></script>

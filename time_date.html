@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+ <style type="text/css">
+   .rb {
+  padding-top: 36px;
+  padding-left: 30px;
+}
+.td {
+    margin-left: 28px;
+  margin-top: 43px;
+}
+.td1 {
+  padding-top: 20px;
+}
+input[type=text]{
+margin-left: 10px;
+}
+    </style>
+</head>
+<body>
+ <div class="td">
+<table>
+  <tr>
+    <td>
+      <label for="date"> Set Date:<input type="text" id="datepicker"></label>
+    </td>
+  
+
+  </tr>
+  </table>
+  <div class="td1">
+  <table>
+  <tr>
+    <td>
+      <label for="time">Set Time:<input type="text" id="datepicker"></label>
+    </td>
+    
+  </tr>
+</table>
+</div>
+</div>     
+<div class=rb> 
+  <input type="radio"  id="rb1" name="dpicker"/>mm/dd/yyyy
+  </br>
+  </br>
+  <input type="radio"  id="rb2" name="dpicker"/>dd/mm/yyyy
+     </div> 
+</p>
+ 
+ 
+</body>
+</html>
+
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+$( "#datepicker" ).datepicker();
+  $('#rb1').click(function(){
+       $( "#datepicker" ).datepicker( "option", "dateFormat", "mm/dd/yy" );
+});
+$('#rb2').click(function(){
+       $( "#datepicker" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+  });
+  </script>
